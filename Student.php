@@ -47,11 +47,18 @@ class Student {
 	}
 
 	/**
-	 *	Returns the Student Info in String format
+	 *	Returns the formatted Student info
 	 */
 	function toString() {
 		$result = $this->first_name . ' ' . $this->surname;
-		$result .= ' ('.$this->average().")\n";
+		$average_formatted = $this->average();
+
+		if(is_double($this->average()))
+		{
+			$average_formatted = number_format($this->average(), 2, '.', '');
+		}
+
+		$result .= ' ('. $average_formatted .")\n";
 		foreach($this->emails as $which=>$what)
 			$result .= $which . ': '. $what. "\n";
 		$result .= "\n";
